@@ -1,0 +1,5 @@
+name = "pantai-tanjung-aru"
+compatibility_date = "2026-08-08"
+
+# Astro 7 + Cloudflare 适配器的静态产物路径指向 dist/client
+assets = { directory = "./dist/client" }
