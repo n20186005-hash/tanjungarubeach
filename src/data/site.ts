@@ -26,7 +26,7 @@ export const SITE = {
   reviewCount: 47665,
   entranceFee: 'Percuma (tiada tiket masuk)',
   ga4Id: 'G-HXM22WWPKP',
-  heroImage: '/gallery/pantai-tanjung-aru-1.jpg',
+  heroImage: '/gallery/pantai-tanjung-aru-14.jpg',
   galleryCount: 17,
 } as const;
 
