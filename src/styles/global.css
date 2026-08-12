@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Pasir (sand) — nada pantai */
+  --color-sand-50: #fdf9f1;
+  --color-sand-100: #faf0dd;
+  --color-sand-200: #f4dfb8;
+  --color-sand-300: #ecc98b;
+  --color-sand-400: #e3ae5e;
+  --color-sand-500: #d9953c;
+  --color-sand-600: #c47d2e;
+  --color-sand-700: #a36228;
+  --color-sand-800: #855026;
+  --color-sand-900: #6d4322;
+
+  /* Laut (ocean) — biru laut dalam */
+  --color-ocean-50: #eef7fb;
+  --color-ocean-100: #d7ecf5;
+  --color-ocean-200: #b3dced;
+  --color-ocean-300: #7fc4e0;
+  --color-ocean-400: #45a5cd;
+  --color-ocean-500: #2b89b4;
+  --color-ocean-600: #1f6d97;
+  --color-ocean-700: #1c587b;
+  --color-ocean-800: #1c4a66;
+  --color-ocean-900: #12364f;
+  --color-ocean-950: #0a2036;
+
+  /* Senja (sunset) — jingga matahari terbenam */
+  --color-sunset-50: #fff5ec;
+  --color-sunset-100: #ffe7d3;
+  --color-sunset-200: #ffcba5;
+  --color-sunset-300: #ffa66d;
+  --color-sunset-400: #ff7a38;
+  --color-sunset-500: #f95d15;
+  --color-sunset-600: #e8450b;
+  --color-sunset-700: #c1330b;
+  --color-sunset-800: #992a11;
+  --color-sunset-900: #7c2611;
+
+  --font-sans: "Segoe UI", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-display: "Segoe UI", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-sand-50 font-sans text-ocean-950 antialiased;
+  }
+
+  ::selection {
+    @apply bg-sunset-400 text-white;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,75 @@
+---
+const cards = [
+  {
+    id: 'yuran',
+    icon: 'ticket',
+    title: 'Yuran & Tiket',
+    points: ['Masuk ke pantai: PERCUMA', 'Tiada tiket atau bayaran masuk', 'Kos tambahan: sewa payung, makanan & kemudahan'],
+  },
+  {
+    id: 'parking',
+    icon: 'parking',
+    title: 'Tempat Letak Kereta',
+    points: ['Tempat letak kereta di sepanjang Jalan Tanjung Aru', 'Tempat letak kereta Tanjung Aru Plaza (berbayar)', 'Penuh menjelang waktu senja — datang awal'],
+  },
+  {
+    id: 'masa-terbaik',
+    icon: 'besttime',
+    title: 'Waktu & Tempoh Lawatan',
+    points: ['Terbaik: 1–2 jam sebelum matahari terbenam', 'Cadangan tempoh: 2–3 jam', 'Musim terbaik: Februari–April (kurang hujan)'],
+  },
+];
+
+const details = {
+  ticket: {
+    text: 'Pantai Tanjung Aru ialah pantai awam — anda boleh datang dan pergi secara percuma, 24 jam sehari. Bayaran hanya dikenakan untuk kemudahan tambahan seperti sewaan payung/tikar, tandas awam (secara sukarela) dan makanan.',
+    extra: 'Tiada kos tersembunyi. Berhati-hati dengan individu yang menawarkan "tiket masuk" — ia tidak diperlukan.',
+  },
+  parking: {
+    text: 'Terdapat tempat letak kereta di sepanjang Jalan Tanjung Aru dan berhampiran Tanjung Aru Plaza. Yuran tempat letak kereta berbeza mengikut lokasi (RM 2–5) dan biasanya dikendalikan oleh pihak berkuasa tempatan.',
+    extra: 'Menjelang waktu senja (17:00–18:30), tempat letak kereta sangat penuh — disarankan datang sebelum 16:00 atau gunakan pengangkutan awam.',
+  },
+  besttime: {
+    text: 'Waktu paling sesuai ialah 1–2 jam sebelum matahari terbenam (sekitar 16:00–17:00). Anda boleh berjalan di pantai, berkelah, dan kemudian menyaksikan senja. Cadangan tempoh lawatan ialah 2–3 jam.',
+    extra: 'Bulan Februari hingga April menawarkan cuaca paling cerah dengan kurang hujan. Elakkan tempoh hujan monsun jika mahukan langit senja yang jelas.',
+  },
+};
+
+const icons = {
+  ticket: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-6 w-6"><path d="M3 9V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4zM13 5v3M13 12v3M13 17v3" /></svg>',
+  parking: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-6 w-6"><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M9 21V7h4a3 3 0 0 1 0 6H9" /></svg>',
+  besttime: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-6 w-6"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>',
+};
+---
+
+<section id="info" class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-sunset-600">Maklumat Praktikal</p>
+      <h2 class="mt-3 text-balance font-display text-3xl font-extrabold text-ocean-950 sm:text-4xl">
+        Semua yang perlu anda tahu sebelum datang
+      </h2>
+    </div>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      {cards.map((c) => (
+        <article id={c.id} class="rounded-3xl border border-sand-200 bg-sand-50 p-7">
+          <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-ocean-800 text-sand-200" set:html={icons[c.icon as keyof typeof icons]}></span>
+          <h3 class="mt-4 text-lg font-bold text-ocean-950">{c.title}</h3>
+          <ul class="mt-3 space-y-2">
+            {c.points.map((p) => (
+              <li class="flex items-start gap-2 text-sm font-medium text-ocean-900/80">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-4 w-4 shrink-0 text-sunset-500" aria-hidden="true"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>
+                {p}
+              </li>
+            ))}
+          </ul>
+          <p class="mt-4 border-t border-sand-200 pt-4 text-sm leading-relaxed text-ocean-900/75">{details[c.icon as keyof typeof details].text}</p>
+          <p class="mt-3 rounded-xl bg-sand-200/60 p-3 text-xs leading-relaxed text-ocean-900/80">
+            {details[c.icon as keyof typeof details].extra}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

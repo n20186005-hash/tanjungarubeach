@@ -1,0 +1,114 @@
+---
+import { SITE } from '../data/site';
+
+const highlights = [
+  {
+    icon: 'sunset',
+    title: 'Senja Bertaraf Dunia',
+    text: 'Dikurniai kedudukan menghadap Barat, matahari terbenam di Tanjung Aru antara yang terbaik di Asia Tenggara.',
+  },
+  {
+    icon: 'sand',
+    title: 'Pasir Keemasan Halus',
+    text: 'Pantai bersih dengan pasir keemasan yang lembut, sesuai untuk berjalan kaki, berkelah dan bermain keluarga.',
+  },
+  {
+    icon: 'palm',
+    title: 'Rimbunan Pokok Aru',
+    text: 'Nama "Tanjung Aru" berasal daripada pokok ru (casuarina) yang teduh di sepanjang pantai — simbol tenang tempat ini.',
+  },
+  {
+    icon: 'airport',
+    title: '10 Minit dari Lapangan Terbang',
+    text: 'Hanya kira-kira 5 km dari Lapangan Terbang Antarabangsa Kota Kinabalu (BKI) — sesuai untuk singgah cepat.',
+  },
+];
+---
+
+<section id="tentang" class="relative bg-sand-50 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-sunset-600">Tentang Pantai</p>
+        <h2 class="mt-3 text-balance font-display text-3xl font-extrabold text-ocean-950 sm:text-4xl">
+          Pantai bandar paling terkenal di Kota Kinabalu
+        </h2>
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-ocean-900/80">
+          <p>
+            <strong class="text-ocean-950">Pantai Tanjung Aru</strong> terletak di bahagian barat daya pusat bandar Kota Kinabalu,
+            menghadap Laut China Selatan. Sejak era Borneo Utara British, kawasan ini menjadi destinasi rekreasi pantai
+            yang paling digemari penduduk dan pelancong di Sabah.
+          </p>
+          <p>
+            Nama <em>"Tanjung Aru"</em> diambil daripada <strong>pokok ru</strong> (pokok casuarina) yang tumbuh subur di
+            sepanjang tanjung ini. Bayangan rimbunan pokok ru yang senget menghadap laut menjadi latar yang ikonik — dan
+            setiap petang, orang ramai berkumpul untuk menyaksikan matahari terbenam di kaki langit Laut China Selatan.
+          </p>
+          <p>
+            Pantai ini dibahagikan kepada tiga bahagian — Pantai Pertama, Pantai Kedua dan Pantai Ketiga — setiap satu dengan
+            suasananya yang tersendiri, dari kawasan riadah yang sibuk sehinggalah bahagian yang tenang dan sunyi.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3 text-sm">
+          <a
+            href={SITE.mapsUrl}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 rounded-full bg-ocean-800 px-5 py-2.5 font-semibold text-white transition hover:bg-ocean-900"
+          >
+            Lokasi di Peta
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" /></svg>
+          </a>
+          <a
+            href="#galeri"
+            class="inline-flex items-center gap-2 rounded-full border border-ocean-800/30 px-5 py-2.5 font-semibold text-ocean-800 transition hover:bg-ocean-800/5"
+          >
+            Lihat Galeri
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <img
+          src="/gallery/pantai-tanjung-aru-2.jpg"
+          alt="Pemandangan Pantai Tanjung Aru"
+          loading="lazy"
+          class="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl"
+        />
+        <div class="absolute -bottom-6 -left-4 hidden rounded-2xl bg-white p-4 shadow-lg sm:block">
+          <div class="flex items-center gap-3">
+            <span class="flex h-12 w-12 items-center justify-center rounded-full bg-sunset-100 text-sunset-600">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-6 w-6" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>
+            </span>
+            <div>
+              <p class="text-sm font-bold text-ocean-950">Waktu terbaik</p>
+              <p class="text-xs text-ocean-900/70">1–2 jam sebelum senja</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {highlights.map((h) => (
+        <article class="rounded-2xl border border-sand-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-ocean-800 text-sand-200">
+            {
+              h.icon === 'sunset' ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-5 w-5" aria-hidden="true"><path d="M12 10V2M4.93 10.93 7.05 8.8m12.02 2.13L16.95 8.8M2 18h2m16 0h2m-18 4h16M6 14a6 6 0 0 1 12 0" /></svg>
+              ) : h.icon === 'sand' ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-5 w-5" aria-hidden="true"><path d="M2 20h20M4 16l3-9 3 6 2-4 3 7M18 16l2-5 2 5" /></svg>
+              ) : h.icon === 'palm' ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-5 w-5" aria-hidden="true"><path d="M12 22V11M12 11c0-4-3-6-6-6 1 4 3 6 6 6Zm0 0c0-3 2-5 5-5-1 3-3 5-5 5Zm0-2.5L8 7M12 8.5 15 6" /></svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-5 w-5" aria-hidden="true"><path d="M2 22h20M4 18h3l2-3h6l2 3h3M5 13V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8M9 7h6M9 10h6" /></svg>
+              )
+            }
+          </span>
+          <h3 class="mt-4 text-lg font-bold text-ocean-950">{h.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ocean-900/70">{h.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

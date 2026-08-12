@@ -1,0 +1,64 @@
+---
+import { SITE } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ocean-950 pb-8 pt-16 text-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-10 lg:grid-cols-3">
+      <div>
+        <img src="/logo.svg" alt="Pantai Tanjung Aru" width="160" height="48" class="h-10 w-auto" />
+        <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
+          {SITE.tagline}. Panduan pelancongan bebas untuk pengunjung Pantai Tanjung Aru, Kota Kinabalu, Sabah.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-wider text-sand-300">Navigasi</h3>
+        <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-white/80">
+          <li><a href="#tentang" class="transition hover:text-sunset-300">Tentang</a></li>
+          <li><a href="#senja" class="transition hover:text-sunset-300">Senja</a></li>
+          <li><a href="#galeri" class="transition hover:text-sunset-300">Galeri</a></li>
+          <li><a href="#makanan" class="transition hover:text-sunset-300">Makanan</a></li>
+          <li><a href="#pengangkutan" class="transition hover:text-sunset-300">Pengangkutan</a></li>
+          <li><a href="#info" class="transition hover:text-sunset-300">Info Praktikal</a></li>
+          <li><a href="#peta" class="transition hover:text-sunset-300">Lokasi</a></li>
+          <li><a href="#soalan-lazim" class="transition hover:text-sunset-300">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-wider text-sand-300">Maklumat</h3>
+        <ul class="mt-4 space-y-2 text-sm text-white/80">
+          <li class="flex gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-4 w-4 shrink-0 text-sunset-400" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+            {SITE.address.street}, {SITE.address.locality} {SITE.address.postalCode}, {SITE.address.region}
+          </li>
+          <li class="flex gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-4 w-4 shrink-0 text-sunset-400" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+            {SITE.hours}
+          </li>
+          <li>
+            <a
+              href={SITE.mapsUrl}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20"
+            >
+              Buka Google Maps
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" /></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-white/10 pt-6 text-center">
+      <p class="text-xs leading-relaxed text-white/60">
+        Laman web ini ialah panduan pelancongan bebas dan bukan laman rasmi kerajaan, pihak berkuasa tempatan atau pengurusan
+        Pantai Tanjung Aru. Maklumat mungkin berubah — sila sahkan semasa lawatan anda. © {year} {SITE.name}.
+      </p>
+    </div>
+  </div>
+</footer>

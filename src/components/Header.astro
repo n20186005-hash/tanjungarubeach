@@ -1,0 +1,99 @@
+---
+import { SITE } from '../data/site';
+
+const nav = [
+  { href: '#tentang', label: 'Tentang' },
+  { href: '#senja', label: 'Senja' },
+  { href: '#galeri', label: 'Galeri' },
+  { href: '#makanan', label: 'Makanan' },
+  { href: '#pengangkutan', label: 'Pengangkutan' },
+  { href: '#info', label: 'Info' },
+  { href: '#soalan-lazim', label: 'FAQ' },
+];
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-colors duration-300 bg-ocean-950/70 backdrop-blur-sm">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+    <a href="#atas" class="flex items-center gap-3" aria-label="Pantai Tanjung Aru — ke atas">
+      <img src="/logo.svg" alt="" width="128" height="38" class="h-9 w-auto" />
+    </a>
+
+    <div class="hidden items-center gap-1 lg:flex">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class="rounded-full px-3 py-2 text-sm font-medium text-white/85 transition hover:bg-white/10 hover:text-white"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={SITE.mapsUrl}
+        target="_blank"
+        rel="noopener"
+        class="ml-2 inline-flex items-center gap-1.5 rounded-full bg-sunset-500 px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-sunset-600"
+      >
+        Peta
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+          <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
+          <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553l-9.056 8.194a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+
+    <button
+      id="menu-toggle"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full text-white/90 transition hover:bg-white/10 lg:hidden"
+      aria-label="Buka menu"
+      aria-expanded="false"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-6 w-6">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden border-t border-white/10 bg-ocean-950/95 backdrop-blur lg:hidden">
+    <div class="flex flex-col gap-1 px-4 py-3">
+      {nav.map((item) => (
+        <a href={item.href} class="rounded-xl px-3 py-2.5 text-sm font-medium text-white/90 transition hover:bg-white/10">
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={SITE.mapsUrl}
+        target="_blank"
+        rel="noopener"
+        class="mt-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-sunset-500 px-4 py-2.5 text-sm font-semibold text-white"
+      >
+        Buka Peta Google
+      </a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      }),
+    );
+  }
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    if (header) {
+      header.classList.toggle('bg-ocean-950/85', window.scrollY > 24);
+      header.classList.toggle('shadow-lg', window.scrollY > 24);
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

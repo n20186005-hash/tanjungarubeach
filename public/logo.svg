@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-label="Pantai Tanjung Aru">
+  <defs>
+    <linearGradient id="ta-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16305e"/>
+      <stop offset="1" stop-color="#3d3f7d"/>
+    </linearGradient>
+    <linearGradient id="ta-sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffc35c"/>
+      <stop offset="1" stop-color="#ff6b3d"/>
+    </linearGradient>
+    <linearGradient id="ta-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f6ea4"/>
+      <stop offset="1" stop-color="#0a3d66"/>
+    </linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="38" fill="url(#ta-sky)"/>
+  <path d="M10 58 Q 24 52 38 58 T 66 58 T 86 58 L86 86 L10 86 Z" fill="url(#ta-sea)"/>
+  <circle cx="48" cy="51" r="13" fill="url(#ta-sun)"/>
+  <path d="M13 62 Q 24 57 35 62 T 61 62 T 83 62" stroke="#ffffff" stroke-width="2.5" fill="none" opacity="0.9" stroke-linecap="round"/>
+  <path d="M13 69 Q 24 64 35 69 T 61 69 T 83 69" stroke="#ffc35c" stroke-width="2.5" fill="none" opacity="0.75" stroke-linecap="round"/>
+  <text x="102" y="52" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="700" fill="#16305e" letter-spacing="-0.5">Pantai Tanjung Aru</text>
+  <text x="102" y="72" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#2b89b4" letter-spacing="3">KOTA KINABALU · SABAH</text>
+</svg>

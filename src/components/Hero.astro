@@ -1,0 +1,66 @@
+---
+import { SITE } from '../data/site';
+---
+
+<section id="atas" class="relative flex min-h-svh items-center justify-center overflow-hidden">
+  <img
+    src={SITE.heroImage}
+    alt="Pantai Tanjung Aru dengan matahari terbenam"
+    class="absolute inset-0 h-full w-full object-cover"
+    fetchpriority="high"
+  />
+  <div class="absolute inset-0 bg-gradient-to-b from-ocean-950/60 via-ocean-950/30 to-ocean-950/80"></div>
+
+  <div class="relative z-10 mx-auto max-w-4xl px-4 pb-24 pt-32 text-center sm:px-6">
+    <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-sand-200 backdrop-blur">
+      Kota Kinabalu · Sabah · Malaysia
+    </p>
+    <h1 class="text-balance font-display text-4xl font-extrabold leading-tight text-white sm:text-6xl lg:text-7xl">
+      Pantai <span class="text-sunset-300">Tanjung Aru</span>
+    </h1>
+    <p class="mx-auto mt-5 max-w-2xl text-balance text-lg text-white/90 sm:text-xl">
+      {SITE.tagline} — pasir keemasan, air biru tenang dan matahari terbenam yang memukau setiap petang.
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="#senja"
+        class="inline-flex items-center gap-2 rounded-full bg-sunset-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sunset-900/30 transition hover:bg-sunset-600"
+      >
+        Lihat Waktu Senja
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clip-rule="evenodd" />
+        </svg>
+      </a>
+      <a
+        href={SITE.mapsUrl}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+      >
+        Buka Google Maps
+      </a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/90">
+      <span class="inline-flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-sunset-300" aria-hidden="true"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" /></svg>
+        {SITE.rating}/5 · {SITE.reviewCount.toLocaleString('ms-MY')} ulasan
+      </span>
+      <span class="inline-flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-sand-300" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd" /></svg>
+        Buka 24 jam
+      </span>
+      <span class="inline-flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 text-sand-300" aria-hidden="true"><path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd" /></svg>
+        Masuk percuma
+      </span>
+    </div>
+  </div>
+
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 z-10 text-ocean-950" aria-hidden="true">
+    <svg viewBox="0 0 1440 96" fill="currentColor" preserveAspectRatio="none" class="h-14 w-full sm:h-20">
+      <path d="M0,64 C240,96 480,32 720,48 C960,64 1200,96 1440,48 L1440,96 L0,96 Z"></path>
+    </svg>
+  </div>
+</section>
