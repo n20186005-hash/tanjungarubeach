@@ -1,13 +1,18 @@
 ---
 import { SITE } from '../data/site';
+import ResponsiveImage from './ResponsiveImage.astro';
 ---
 
 <section id="atas" class="relative flex min-h-svh items-center justify-center overflow-hidden">
-  <img
+  <ResponsiveImage
     src={SITE.heroImage}
-    alt="Pantai Tanjung Aru dengan matahari terbenam"
+    alt="Pantai Tanjung Aru (Tanjung Aru Beach) dengan matahari terbenam"
     class="absolute inset-0 h-full w-full object-cover"
+    sizes="100vw"
+    loading="eager"
     fetchpriority="high"
+    width={1800}
+    height={1350}
   />
   <div class="absolute inset-0 bg-gradient-to-b from-ocean-950/60 via-ocean-950/30 to-ocean-950/80"></div>
 
@@ -18,6 +23,9 @@ import { SITE } from '../data/site';
     <h1 class="text-balance font-display text-4xl font-extrabold leading-tight text-white sm:text-6xl lg:text-7xl">
       Pantai <span class="text-sunset-300">Tanjung Aru</span>
     </h1>
+    <p class="mt-3 text-sm font-medium tracking-wide text-sand-200 sm:text-base">
+      Tanjung Aru Beach · 丹绒亚路海滩 · Kota Kinabalu, Sabah
+    </p>
     <p class="mx-auto mt-5 max-w-2xl text-balance text-lg text-white/90 sm:text-xl">
       {SITE.tagline} — pasir keemasan, air biru tenang dan matahari terbenam yang memukau setiap petang.
     </p>
@@ -56,6 +64,10 @@ import { SITE } from '../data/site';
         Masuk percuma
       </span>
     </div>
+
+    <p class="mt-4 text-xs text-white/65">
+      Penilaian {SITE.rating}/5 daripada {SITE.reviewCount.toLocaleString('ms-MY')} ulasan di {SITE.ratingSource} · dikemas kini {SITE.ratingUpdated}
+    </p>
   </div>
 
   <div class="pointer-events-none absolute bottom-0 left-0 right-0 z-10 text-ocean-950" aria-hidden="true">

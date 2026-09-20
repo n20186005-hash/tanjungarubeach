@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../data/site';
+import ResponsiveImage from './ResponsiveImage.astro';
 
 const highlights = [
   {
@@ -35,7 +36,8 @@ const highlights = [
         </h2>
         <div class="mt-6 space-y-4 text-base leading-relaxed text-ocean-900/80">
           <p>
-            <strong class="text-ocean-950">Pantai Tanjung Aru</strong> terletak di bahagian barat daya pusat bandar Kota Kinabalu,
+            <strong class="text-ocean-950">Pantai Tanjung Aru</strong> (juga dikenali sebagai <em>Tanjung Aru Beach</em>)
+            terletak di bahagian barat daya pusat bandar Kota Kinabalu,
             menghadap Laut China Selatan. Sejak era Borneo Utara British, kawasan ini menjadi destinasi rekreasi pantai
             yang paling digemari penduduk dan pelancong di Sabah.
           </p>
@@ -69,10 +71,12 @@ const highlights = [
       </div>
 
       <div class="relative">
-        <img
+        <ResponsiveImage
           src="/gallery/pantai-tanjung-aru-2.jpg"
-          alt="Pemandangan Pantai Tanjung Aru"
-          loading="lazy"
+          alt="Pemandangan Pantai Tanjung Aru (Tanjung Aru Beach), Kota Kinabalu"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          width={1800}
+          height={1014}
           class="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl"
         />
         <div class="absolute -bottom-6 -left-4 hidden rounded-2xl bg-white p-4 shadow-lg sm:block">

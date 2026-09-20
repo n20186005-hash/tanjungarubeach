@@ -1,4 +1,6 @@
 ---
+import ResponsiveImage from './ResponsiveImage.astro';
+
 const beaches = [
   {
     name: 'Pantai Pertama (First Beach)',
@@ -50,10 +52,10 @@ const safety = [
       {beaches.map((b) => (
         <article class="group overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-sm transition hover:shadow-lg">
           <div class="relative h-52 overflow-hidden">
-            <img
+            <ResponsiveImage
               src={b.img}
               alt={b.name}
-              loading="lazy"
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             />
             <span class="absolute left-4 top-4 rounded-full bg-ocean-950/80 px-3 py-1 text-xs font-semibold text-sand-200 backdrop-blur">

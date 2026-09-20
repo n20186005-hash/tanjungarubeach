@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { SITE } from '../data/site';
+import { webpSrcset, webpUrl } from '../lib/images';
 
 interface Props {
   title: string;
@@ -9,38 +10,50 @@ interface Props {
 
 const { title, description = SITE.description } = Astro.props;
 
-// Domain hanya dibaca daripada site Astro (astro.config.mjs, env SITE_URL).
-// Jika kosong, canonical/OG menjadi relatif atau ditinggalkan — binaan tetap berjaya.
-const hasSite = Boolean(Astro.site);
-const canonical = hasSite ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
-const ogImage = hasSite ? new URL(SITE.heroImage, Astro.site).toString() : undefined;
+// Domain dibaca daripada site Astro (astro.config.mjs). Sentiasa HTTPS — elak pendua http/https.
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://tanjungarubeach.com').toString();
+const ogImage = new URL(SITE.heroImage, Astro.site ?? 'https://tanjungarubeach.com').toString();
+const heroSrcset = webpSrcset(SITE.heroImage);
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'TouristAttraction',
+  '@type': ['TouristAttraction', 'Beach'],
+  '@id': `${canonical}#pantai`,
   name: SITE.name,
-  alternateName: SITE.nameEn,
+  alternateName: [SITE.nameEn, SITE.nameZh],
   description: SITE.description,
-  ...(hasSite ? { url: canonical, image: [ogImage] } : {}),
+  url: canonical,
+  image: [ogImage],
+  telephone: SITE.phone,
   address: {
     '@type': 'PostalAddress',
     streetAddress: SITE.address.street,
     addressLocality: SITE.address.locality,
     addressRegion: SITE.address.region,
     postalCode: SITE.address.postalCode,
-    addressCountry: 'MY',
+    addressCountry: SITE.address.countryCode,
   },
   geo: {
     '@type': 'GeoCoordinates',
     latitude: SITE.lat,
     longitude: SITE.lng,
   },
+  hasMap: SITE.mapsUrl,
+  sameAs: [SITE.mapsUrl],
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '00:00',
     closes: '23:59',
   },
+  isAccessibleForFree: true,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Kemasukan percuma', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Tempat letak kereta', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Tandas awam', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Gerai makanan', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Taman permainan kanak-kanak', value: true },
+  ],
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: String(SITE.rating),
@@ -48,7 +61,6 @@ const jsonLd = {
     bestRating: '5',
     worstRating: '1',
   },
-  sameAs: [SITE.mapsUrl],
 };
 ---
 
@@ -60,21 +72,42 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="theme-color" content="#0a2036" />
+
+    <!-- Imej utama (LCP) dipra-muat dalam format WebP mengikut lebar skrin -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href={webpUrl(SITE.heroImage, 1024)}
+      imagesrcset={heroSrcset}
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:site_name" content={`${SITE.name} · ${SITE.nameEn}`} />
+    <meta property="og:locale" content="ms_MY" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {hasSite && <meta property="og:url" content={canonical} />}
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={`${SITE.name} (${SITE.nameEn}) pada waktu senja`} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Ikon (logo & favicon seragam) -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <!-- Google Analytics 4 -->
     <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
@@ -87,7 +120,7 @@ const jsonLd = {
       gtag('config', 'G-HXM22WWPKP');
     </script>
 
-    <!-- Data Berstruktur: Tarikan Pelancongan -->
+    <!-- Data Berstruktur: Pantai & Tarikan Pelancongan -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>

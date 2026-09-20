@@ -1,4 +1,39 @@
 ---
+// Anggaran waktu matahari terbenam Kota Kinabalu (5.9472°U, 116.0441°T, UTC+8) pada pertengahan setiap bulan.
+const sunsetByMonth = [
+  { month: 'Januari', time: '18:19' },
+  { month: 'Februari', time: '18:28' },
+  { month: 'Mac', time: '18:28' },
+  { month: 'April', time: '18:23' },
+  { month: 'Mei', time: '18:24' },
+  { month: 'Jun', time: '18:30' },
+  { month: 'Julai', time: '18:35' },
+  { month: 'Ogos', time: '18:30' },
+  { month: 'September', time: '18:16' },
+  { month: 'Oktober', time: '18:01' },
+  { month: 'November', time: '17:56' },
+  { month: 'Disember', time: '18:04' },
+];
+
+const viewpoints = [
+  {
+    name: 'Pantai Pertama (First Beach)',
+    text: 'Paling popular dan paling mudah diakses — deretan gerai makanan, taman permainan dan ruang terbuka menghadap terus ke arah matahari terbenam.',
+  },
+  {
+    name: 'Pantai Kedua (Second Beach)',
+    text: 'Lebih tenang dengan barisan pokok ru (casuarina) yang menjadi latar foto ikonik Tanjung Aru.',
+  },
+  {
+    name: 'Hujung Pantai Ketiga (Third Beach)',
+    text: 'Bahagian paling sunyi menghala ke resort — sesuai jika anda mahu menonton senja tanpa kekecohan.',
+  },
+  {
+    name: 'Kawasan Tanjung Aru Beach Resort',
+    text: 'Persisiran berhampiran resort di hujung tanjung menawarkan pemandangan laut yang lapang ke arah barat.',
+  },
+];
+
 const timeline = [
   { time: '16:00', label: 'Tiba di pantai', text: 'Pilih tempat duduk, sewa payung atau cari sudut santai di bawah pokok ru.' },
   { time: '16:30', label: 'Cahaya keemasan', text: 'Cahaya matahari mulai keemasan — masa terbaik untuk bergambar bersama keluarga.' },
@@ -40,6 +75,51 @@ const timeline = [
           <p class="mt-1.5 text-sm leading-relaxed text-white/70">{t.text}</p>
         </article>
       ))}
+    </div>
+
+    <div class="mt-14 grid gap-8 lg:grid-cols-2">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+        <h3 class="text-lg font-bold text-sand-200">Anggaran waktu matahari terbenam mengikut bulan</h3>
+        <p class="mt-2 text-sm leading-relaxed text-white/70">
+          Waktu tempatan Kota Kinabalu (UTC+8) pada pertengahan setiap bulan. Tiba 1–2 jam lebih awal untuk menikmati
+          cahaya keemasan.
+        </p>
+        <table class="mt-5 w-full text-sm">
+          <caption class="sr-only">
+            Anggaran waktu matahari terbenam di Pantai Tanjung Aru mengikut bulan
+          </caption>
+          <thead>
+            <tr class="text-left text-xs uppercase tracking-wider text-sand-300">
+              <th scope="col" class="py-2 pr-4 font-semibold">Bulan</th>
+              <th scope="col" class="py-2 font-semibold">Matahari terbenam</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/10">
+            {sunsetByMonth.map((s) => (
+              <tr>
+                <th scope="row" class="py-2 pr-4 text-left font-medium text-white/85">{s.month}</th>
+                <td class="py-2 font-semibold text-white">{s.time}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+        <h3 class="text-lg font-bold text-sand-200">Tempat terbaik untuk menonton senja</h3>
+        <p class="mt-2 text-sm leading-relaxed text-white/70">
+          Pesisir Tanjung Aru menghadap ke barat — hampir semua bahagian pantai sesuai, tetapi setiap bahagian memberi
+          suasana yang berbeza.
+        </p>
+        <ul class="mt-5 space-y-4">
+          {viewpoints.map((v) => (
+            <li>
+              <h4 class="text-base font-semibold text-white">{v.name}</h4>
+              <p class="mt-1 text-sm leading-relaxed text-white/70">{v.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
 
     <div class="mt-10 flex flex-col items-start gap-3 rounded-2xl border border-sunset-500/30 bg-sunset-500/10 p-6 sm:flex-row sm:items-center">

@@ -3,3 +3,5 @@ Allow: /
 
 Disallow: /node_modules/
 Disallow: /*.DS_Store
+
+Sitemap: https://tanjungarubeach.com/sitemap-index.xml

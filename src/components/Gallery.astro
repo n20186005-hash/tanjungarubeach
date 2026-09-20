@@ -1,5 +1,6 @@
 ---
 import { GALLERY_IMAGES } from '../data/site';
+import ResponsiveImage from './ResponsiveImage.astro';
 
 const visible = GALLERY_IMAGES.slice(0, 12);
 ---
@@ -27,10 +28,10 @@ const visible = GALLERY_IMAGES.slice(0, 12);
           data-alt={`Galeri Pantai Tanjung Aru ${i + 1}`}
           aria-label={`Buka foto ${i + 1} dalam skrin penuh`}
         >
-          <img
+          <ResponsiveImage
             src={src}
-            alt={`Pantai Tanjung Aru — foto ${i + 1}`}
-            loading="lazy"
+            alt={`Pantai Tanjung Aru (Tanjung Aru Beach) — foto ${i + 1}`}
+            sizes="(min-width: 1024px) 25vw, 50vw"
             class={`w-full object-cover transition duration-500 group-hover:scale-105 ${i % 5 === 0 ? 'aspect-[4/5]' : i % 3 === 0 ? 'aspect-square' : 'aspect-[4/3]'}`}
           />
           <span class="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-ocean-950/60 to-transparent p-3 opacity-0 transition group-hover:opacity-100">

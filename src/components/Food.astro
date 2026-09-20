@@ -1,4 +1,6 @@
 ---
+import ResponsiveImage from './ResponsiveImage.astro';
+
 const foods = [
   {
     name: 'Kedai Kopi Seng Hing',
@@ -44,7 +46,12 @@ const foods = [
       {foods.map((f) => (
         <article class="group overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
           <div class="relative h-44 overflow-hidden">
-            <img src={f.img} alt={f.name} loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+            <ResponsiveImage
+              src={f.img}
+              alt={f.name}
+              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
             <span class="absolute left-3 top-3 rounded-full bg-sunset-500 px-3 py-1 text-xs font-semibold text-white shadow">
               {f.tag}
             </span>

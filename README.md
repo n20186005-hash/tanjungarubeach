@@ -27,19 +27,28 @@ pnpm preview    # pratonton binaan
 Skrip tambahan:
 
 ```sh
-pnpm optimize   # mampatkan gambar di public/gallery (sharp)
-pnpm icons      # hasilkan favicon PNG daripada public/favicon.svg
+pnpm optimize    # mampatkan gambar di public/gallery (sharp)
+pnpm responsive  # hasilkan varian WebP 640/1024/1600px ke public/gallery/responsive
+pnpm icons       # hasilkan favicon PNG daripada public/favicon.svg
 ```
 
 ## Domain
 
-Nama domain dikonfigurasikan **hanya** dalam medan `site` `astro.config.mjs`, dibaca daripada pemboleh ubah persekitaran `SITE_URL`:
+Domain rasmi: **https://tanjungarubeach.com**
+
+Nilai ini ditetapkan dalam medan `site` `astro.config.mjs` (boleh ditindih melalui pemboleh ubah persekitaran `SITE_URL`).
+Domain sentiasa ada, jadi canonical, Open Graph dan sitemap (`/sitemap-index.xml`) sentiasa terhasil dalam bentuk HTTPS mutlak.
 
 ```sh
-SITE_URL=https://pantaitanjaru.com pnpm build
+SITE_URL=https://tanjungarubeach.com pnpm build
 ```
 
-Jika `SITE_URL` kosong, tapak tetap boleh dibina — canonical/OG menjadi relatif dan sitemap dinyahaktifkan secara automatik. Selepas domain disahkan, set sekali dan bina semula.
+## HTTPS & canonical
+
+- `http://` **mesti** dilencongkan (301) ke `https://` di peringkat Cloudflare: aktifkan **Always Use HTTPS** (SSL/TLS → Edge Certificates).
+  Ini bukan dilakukan dalam kod — tapak ini ialah aset statik, jadi lencongan dilakukan di tepi Cloudflare (atau Bulk Redirect Rules).
+- HSTS dihantar melalui `public/_headers` (`Strict-Transport-Security`).
+- `<link rel="canonical">` sentiasa HTTPS mutlak; `public/robots.txt` mengisytiharkan `Sitemap: https://tanjungarubeach.com/sitemap-index.xml`.
 
 ## Struktur
 
@@ -57,4 +66,6 @@ scripts/                 # utiliti bina (optimize-images, generate-icons)
 ## Catatan
 
 - Kandungan adalah panduan pelancongan bebas; laman ini bukan laman rasmi kerajaan atau pengurusan pantai.
-- Skor & ulasan dipetik daripada Google Maps / TripAdvisor dan mungkin berubah dari masa ke masa.
+- Skor & ulasan dipetik daripada Google Maps (4.3 / 14,159 ulasan, September 2026) dan mungkin berubah dari masa ke masa.
+- Imej dihantar sebagai WebP responsif (640/1024/1600px) dengan `width`/`height` dan `loading="lazy"` — jalankan `pnpm responsive`
+  selepas menambah gambar baharu ke `public/gallery`.
