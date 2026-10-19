@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import { SITE } from '../data/site';
 import About from '../components/About.astro';
 import Sunset from '../components/Sunset.astro';
 import Beaches from '../components/Beaches.astro';
@@ -15,13 +16,20 @@ import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 
 const title =
-  'Pantai Tanjung Aru (Tanjung Aru Beach) — Panduan Senja, Makanan & Info Lawatan';
+  'Pantai Tanjung Aru, Kota Kinabalu | Waktu, Senja & Lokasi';
 ---
 
 <BaseLayout title={title}>
   <Header />
   <main>
     <Hero />
+    <section aria-label="Ringkasan lawatan" class="bg-sand-100 px-4 py-10">
+      <div class="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
+        <div><h2 class="font-bold text-ocean-950">Waktu lawatan & lokasi</h2><p class="mt-2 text-sm">{SITE.hours}. {SITE.hoursNote}</p><a class="mt-2 inline-block underline" href="#peta">Alamat dan pin peta</a></div>
+        <div><h2 class="font-bold text-ocean-950">Rancang waktu senja</h2><p class="mt-2 text-sm">Tiba 1–2 jam sebelum waktu matahari terbenam pada tarikh lawatan. Semak cuaca dan jangan gunakan satu waktu tetap sepanjang tahun.</p><a class="mt-2 inline-block underline" href="#senja">Panduan masa dan tempat</a></div>
+        <div><h2 class="font-bold text-ocean-950">Pantai Kedua atau taman?</h2><p class="mt-2 text-sm">Tanjung Aru Beach 2 merujuk kepada Pantai Kedua. Perdana Park ialah taman berasingan dengan waktu dan peraturan sendiri.</p><a class="mt-2 inline-block underline" href="#pantai">Bandingkan bahagian pantai</a> · <a class="underline" href="#sekitar">Semak Perdana Park</a></div>
+      </div>
+    </section>
     <About />
     <Sunset />
     <Beaches />

@@ -40,12 +40,6 @@ const jsonLd = {
   },
   hasMap: SITE.mapsUrl,
   sameAs: [SITE.mapsUrl],
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    opens: '00:00',
-    closes: '23:59',
-  },
   isAccessibleForFree: true,
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: 'Kemasukan percuma', value: true },
@@ -54,13 +48,6 @@ const jsonLd = {
     { '@type': 'LocationFeatureSpecification', name: 'Gerai makanan', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Taman permainan kanak-kanak', value: true },
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: String(SITE.rating),
-    reviewCount: String(SITE.reviewCount),
-    bestRating: '5',
-    worstRating: '1',
-  },
 };
 ---
 
@@ -90,7 +77,6 @@ const jsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={`${SITE.name} · ${SITE.nameEn}`} />
     <meta property="og:locale" content="ms_MY" />
-    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -114,7 +100,7 @@ const jsonLd = {
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
-        dataLayer.push(arguments);
+        window.dataLayer.push(arguments);
       }
       gtag('js', new Date());
       gtag('config', 'G-HXM22WWPKP');

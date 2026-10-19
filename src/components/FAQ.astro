@@ -1,33 +1,37 @@
 ---
 const faqs = [
   {
-    q: 'Apakah waktu operasi Pantai Tanjung Aru?',
-    a: 'Pantai Tanjung Aru terbuka 24 jam setiap hari dan kemasukan adalah percuma. Gerai makanan dan kemudahan lain biasanya mula beroperasi pada waktu pagi hingga lewat malam.',
+    "q": "Apakah waktu operasi Pantai Tanjung Aru?",
+    "a": "Senarai Google Maps yang disemak pada 19 Oktober 2026 menunjukkan 10:00–23:00 setiap hari. Ini ialah waktu senarai tempat, bukan jaminan semua kawasan pantai atau gerai dibuka pada waktu sama. Ikut papan tanda setempat."
   },
   {
-    q: 'Adakah dikenakan bayaran masuk?',
-    a: 'Tidak. Pantai Tanjung Aru ialah pantai awam yang percuma sepenuhnya. Bayaran hanya untuk kemudahan tambahan seperti sewaan payung, tandas awam dan makanan.',
+    "q": "Adakah dikenakan bayaran masuk?",
+    "a": "Lawatan ke pantai awam tidak memerlukan tiket masuk. Makanan, parkir dan perkhidmatan pilihan mempunyai caj berasingan; semak kadar sebelum membeli."
   },
   {
-    q: 'Bagaimana untuk ke Pantai Tanjung Aru dari pusat bandar?',
-    a: 'Dari pusat bandar Kota Kinabalu, ambil teksi atau Grab (lebih kurang 15 minit, RM 15–20), atau gunakan bas awam ke hentian Tanjung Aru. Anda juga boleh berjalan kaki sejauh lebih kurang 3 km melalui laluan pantai.',
+    "q": "Bagaimana untuk ke Pantai Tanjung Aru dari pusat bandar?",
+    "a": "Gunakan pin Pantai Tanjung Aru dalam peta untuk perjalanan dari hotel atau lapangan terbang. Semak harga dan masa perjalanan dalam aplikasi teksi atau e-hailing; tambang berubah mengikut lokasi dan trafik. Laluan, hentian serta perjalanan terakhir bas perlu disahkan dengan pengendali."
   },
   {
-    q: 'Bilakah waktu terbaik untuk melihat matahari terbenam?',
-    a: 'Datanglah 1–2 jam sebelum matahari terbenam, biasanya sekitar 16:00–17:00. Matahari terbenam di Sabah berlaku sekitar jam 18:00–18:30 bergantung kepada musim.',
+    "q": "Bilakah waktu terbaik untuk melihat matahari terbenam?",
+    "a": "Rancang tiba 1–2 jam sebelum matahari terbenam pada tarikh lawatan. Masa berubah sepanjang tahun dan cuaca boleh menutup pemandangan. Gunakan jadual harian Kota Kinabalu yang dipautkan dalam bahagian senja."
   },
   {
-    q: 'Adakah pantai ini sesuai untuk kanak-kanak?',
-    a: 'Ya, sesuai. Airnya tenang dan airnya cetek di kawasan tertentu, serta terdapat taman permainan kanak-kanak di sekitar Pantai Pertama. Namun sentiasa awasi kanak-kanak semasa mereka bermain di air.',
+    "q": "Apakah Tanjung Aru Beach 2?",
+    "a": "Tanjung Aru Beach 2 merujuk kepada Pantai Kedua, salah satu bahagian pesisir Tanjung Aru. Pilih titik pertemuan yang tepat dalam peta kerana Pantai Pertama, Kedua dan Ketiga bukan satu titik masuk yang sama."
   },
   {
-    q: 'Adakah terdapat tempat letak kereta?',
-    a: 'Ya, terdapat tempat letak kereta di sepanjang Jalan Tanjung Aru dan berhampiran Tanjung Aru Plaza (berbayar). Ia menjadi penuh menjelang waktu senja, jadi datanglah awal.',
+    "q": "Adakah terdapat tempat letak kereta?",
+    "a": "Terdapat kawasan parkir berhampiran pantai. Semak akses, kadar dan papan tanda di lokasi; datang awal sebelum senja dan elakkan menghalang laluan keluar masuk."
   },
   {
-    q: 'Bolehkah saya berenang di pantai ini?',
-    a: 'Boleh, tetapi berhati-hati dengan arus dan ikut papan tanda keselamatan. Elakkan berenang semasa laut bergelora atau cuaca buruk.',
+    "q": "Adakah pantai sesuai untuk aktiviti keluarga?",
+    "a": "Berjalan di pesisir, berkelah, bermain pasir dan melihat senja ialah pilihan lawatan keluarga. Awasi kanak-kanak dan semak keadaan laut serta arahan setempat sebelum sebarang aktiviti air."
   },
+  {
+    "q": "Adakah Perdana Park sama dengan Pantai Tanjung Aru?",
+    "a": "Tidak. Perdana Park ialah taman berdekatan yang berasingan. Notis DBKK 2 Julai 2026 menyatakan pembukaan semula 4 Julai, waktu 07:00–19:00 dan penutupan air pancut serta beberapa kemudahan ketika itu. Semak notis terkini; jangan anggap pertunjukan muzik malam tersedia."
+  }
 ];
 
 const faqLd = {
@@ -83,6 +87,7 @@ const faqLd = {
     const panel = item.querySelector('.faq-panel');
     const icon = item.querySelector('.faq-icon');
     btn?.addEventListener('click', () => {
+      if (!panel) return;
       const open = panel.classList.toggle('hidden');
       btn.setAttribute('aria-expanded', String(!open));
       icon?.classList.toggle('rotate-180', !open);

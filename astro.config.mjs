@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -12,9 +11,6 @@ const site = process.env.SITE_URL || 'https://tanjungarubeach.com';
 export default defineConfig({
 	site,
 	output: 'static',
-	adapter: cloudflare({
-		imageService: 'passthrough',
-	}),
 	integrations: [sitemap()],
 	vite: {
 		plugins: [tailwindcss()],
