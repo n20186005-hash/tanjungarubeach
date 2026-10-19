@@ -1,4 +1,5 @@
 ---
+import { SITE } from '../data/site';
 const cards = [
   {
     id: 'yuran',
@@ -16,22 +17,22 @@ const cards = [
     id: 'masa-terbaik',
     icon: 'besttime',
     title: 'Waktu & Tempoh Lawatan',
-    points: ['Terbaik: 1–2 jam sebelum matahari terbenam', 'Cadangan tempoh: 2–3 jam', 'Musim terbaik: Februari–April (kurang hujan)'],
+    points: ['Terbaik: 1–2 jam sebelum matahari terbenam', 'Cadangan tempoh: 2–3 jam', 'Semak ramalan cuaca pada hari lawatan'],
   },
 ];
 
 const details = {
   ticket: {
-    text: 'Pantai Tanjung Aru ialah pantai awam — anda boleh datang dan pergi secara percuma, 24 jam sehari. Bayaran hanya dikenakan untuk kemudahan tambahan seperti sewaan payung/tikar, tandas awam (secara sukarela) dan makanan.',
-    extra: 'Tiada kos tersembunyi. Berhati-hati dengan individu yang menawarkan "tiket masuk" — ia tidak diperlukan.',
+    text: `Lawatan pantai awam tidak memerlukan tiket masuk. Waktu senarai Google Maps: ${SITE.hours}. ${SITE.hoursNote}`,
+    extra: 'Makanan, parkir dan perkhidmatan pilihan mungkin dikenakan bayaran. Semak kadar dengan pengusaha sebelum menggunakan perkhidmatan.',
   },
   parking: {
-    text: 'Terdapat tempat letak kereta di sepanjang Jalan Tanjung Aru dan berhampiran Tanjung Aru Plaza. Yuran tempat letak kereta berbeza mengikut lokasi (RM 2–5) dan biasanya dikendalikan oleh pihak berkuasa tempatan.',
+    text: 'Terdapat tempat letak kereta di sepanjang Jalan Tanjung Aru dan berhampiran Tanjung Aru Plaza. Semak papan tanda dan kadar di tempat letak kereta yang dipilih; kadar semasa tidak disahkan.',
     extra: 'Menjelang waktu senja (17:00–18:30), tempat letak kereta sangat penuh — disarankan datang sebelum 16:00 atau gunakan pengangkutan awam.',
   },
   besttime: {
     text: 'Waktu paling sesuai ialah 1–2 jam sebelum matahari terbenam (sekitar 16:00–17:00). Anda boleh berjalan di pantai, berkelah, dan kemudian menyaksikan senja. Cadangan tempoh lawatan ialah 2–3 jam.',
-    extra: 'Bulan Februari hingga April menawarkan cuaca paling cerah dengan kurang hujan. Elakkan tempoh hujan monsun jika mahukan langit senja yang jelas.',
+    extra: 'Cuaca dan litupan awan mempengaruhi pemandangan senja. Sediakan rancangan alternatif jika hujan atau ribut.',
   },
 };
 

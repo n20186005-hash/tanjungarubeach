@@ -1,19 +1,4 @@
 ---
-// Anggaran waktu matahari terbenam Kota Kinabalu (5.9472°U, 116.0441°T, UTC+8) pada pertengahan setiap bulan.
-const sunsetByMonth = [
-  { month: 'Januari', time: '18:19' },
-  { month: 'Februari', time: '18:28' },
-  { month: 'Mac', time: '18:28' },
-  { month: 'April', time: '18:23' },
-  { month: 'Mei', time: '18:24' },
-  { month: 'Jun', time: '18:30' },
-  { month: 'Julai', time: '18:35' },
-  { month: 'Ogos', time: '18:30' },
-  { month: 'September', time: '18:16' },
-  { month: 'Oktober', time: '18:01' },
-  { month: 'November', time: '17:56' },
-  { month: 'Disember', time: '18:04' },
-];
 
 const viewpoints = [
   {
@@ -35,11 +20,31 @@ const viewpoints = [
 ];
 
 const timeline = [
-  { time: '16:00', label: 'Tiba di pantai', text: 'Pilih tempat duduk, sewa payung atau cari sudut santai di bawah pokok ru.' },
-  { time: '16:30', label: 'Cahaya keemasan', text: 'Cahaya matahari mulai keemasan — masa terbaik untuk bergambar bersama keluarga.' },
-  { time: '17:30', label: 'Jam emas', text: 'Langit bertukar jingga dan ungu. Puncak pemandangan sebelum matahari terbenam.' },
-  { time: '18:00–18:30', label: 'Matahari terbenam', text: 'Matahari tenggelam di kaki langit Laut China Selatan — detik paling dinanti.' },
-  { time: '18:30+', label: 'Lampu menyala', text: 'Gerai makanan mula dibuka; nikmati makan malam di bawah langit senja.' },
+  {
+    "time": "1–2 jam sebelum",
+    "label": "Tiba di pantai",
+    "text": "Pilih tempat dan semak keadaan cuaca serta akses."
+  },
+  {
+    "time": "60 minit sebelum",
+    "label": "Berjalan & cari sudut",
+    "text": "Pilih pesisir dengan pandangan ke arah barat dan perhatikan perubahan cahaya."
+  },
+  {
+    "time": "30 minit sebelum",
+    "label": "Bersedia bergambar",
+    "text": "Keadaan awan menentukan warna langit; hasil senja berbeza setiap hari."
+  },
+  {
+    "time": "Waktu tarikh lawatan",
+    "label": "Matahari terbenam",
+    "text": "Rujuk jadual harian Kota Kinabalu. Waktu ini tidak tetap sepanjang tahun."
+  },
+  {
+    "time": "Selepas senja",
+    "label": "Rancang perjalanan pulang",
+    "text": "Semak gerai yang masih dibuka dan titik jemputan sebelum beredar."
+  }
 ];
 ---
 
@@ -79,30 +84,10 @@ const timeline = [
 
     <div class="mt-14 grid gap-8 lg:grid-cols-2">
       <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
-        <h3 class="text-lg font-bold text-sand-200">Anggaran waktu matahari terbenam mengikut bulan</h3>
-        <p class="mt-2 text-sm leading-relaxed text-white/70">
-          Waktu tempatan Kota Kinabalu (UTC+8) pada pertengahan setiap bulan. Tiba 1–2 jam lebih awal untuk menikmati
-          cahaya keemasan.
-        </p>
-        <table class="mt-5 w-full text-sm">
-          <caption class="sr-only">
-            Anggaran waktu matahari terbenam di Pantai Tanjung Aru mengikut bulan
-          </caption>
-          <thead>
-            <tr class="text-left text-xs uppercase tracking-wider text-sand-300">
-              <th scope="col" class="py-2 pr-4 font-semibold">Bulan</th>
-              <th scope="col" class="py-2 font-semibold">Matahari terbenam</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-white/10">
-            {sunsetByMonth.map((s) => (
-              <tr>
-                <th scope="row" class="py-2 pr-4 text-left font-medium text-white/85">{s.month}</th>
-                <td class="py-2 font-semibold text-white">{s.time}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <h3 class="text-lg font-bold text-sand-200">Semak waktu senja untuk tarikh lawatan</h3>
+        <p class="mt-3 text-sm leading-relaxed text-white/80">Gunakan waktu tempatan Kota Kinabalu (UTC+8). Sebagai contoh bertarikh, jadual 19 Oktober 2026 menyenaraikan matahari terbenam pada 17:59; jangan gunakan waktu contoh ini untuk tarikh lain.</p>
+        <a class="mt-5 inline-block rounded-full bg-sunset-500 px-5 py-3 text-sm font-bold text-white" href="https://www.timeanddate.com/sun/malaysia/kota-kinabalu" target="_blank" rel="noopener">Buka jadual harian Kota Kinabalu</a>
+        <p class="mt-4 text-sm text-white/70">Pilih tarikh perjalanan dan tiba 1–2 jam lebih awal. Jadual astronomi ialah anggaran kedudukan matahari; awan dan hujan tetap mempengaruhi pemandangan.</p>
       </div>
 
       <div class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
@@ -125,8 +110,7 @@ const timeline = [
     <div class="mt-10 flex flex-col items-start gap-3 rounded-2xl border border-sunset-500/30 bg-sunset-500/10 p-6 sm:flex-row sm:items-center">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-6 w-6 shrink-0 text-sunset-300" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0ZM12 9v4m0 4h.01" /></svg>
       <p class="text-sm leading-relaxed text-white/85">
-        <strong class="text-sunset-300">Petua:</strong> waktu matahari terbenam di Sabah berubah sepanjang tahun (biasanya
-        sekitar jam 18:00–18:30). Semak ramalan cuaca sebelum berkunjung — langit mendung boleh menutup pemandangan senja.
+        <strong class="text-sunset-300">Petua:</strong> waktu matahari terbenam di Kota Kinabalu berubah sepanjang tahun. Semak ramalan cuaca sebelum berkunjung — langit mendung boleh menutup pemandangan senja.
       </p>
     </div>
   </div>

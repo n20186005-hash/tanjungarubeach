@@ -1,5 +1,6 @@
 name = "pantai-tanjung-aru"
 compatibility_date = "2026-08-08"
 
-# Astro 7 + Cloudflare 适配器的静态产物路径指向 dist/client
-assets = { directory = "./dist/client" }
+# Halaman statik Astro; Worker hanya mengendalikan hos www.
+main = "src/worker.js"
+assets = { directory = "./dist", binding = "ASSETS", run_worker_first = true, not_found_handling = "404-page" }
