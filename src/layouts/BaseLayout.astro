@@ -6,23 +6,33 @@ import { webpSrcset, webpUrl } from '../lib/images';
 interface Props {
   title: string;
   description?: string;
+  /** Html lang attribute for the page (default: site default Malay). */
+  lang?: string;
+  /** Open Graph locale (default: ms_MY). */
+  ogLocale?: string;
+  /** Additional JSON-LD nodes appended after the shared TouristAttraction entity. */
+  extraJsonLd?: object[];
 }
 
-const { title, description = SITE.description } = Astro.props;
+const { title, description = SITE.description, lang = SITE.lang, ogLocale = 'ms_MY', extraJsonLd = [] } =
+  Astro.props;
 
 // Domain dibaca daripada site Astro (astro.config.mjs). Sentiasa HTTPS — elak pendua http/https.
+const siteRoot = (Astro.site ?? 'https://tanjungarubeach.com').toString().replace(/\/+$/, '');
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://tanjungarubeach.com').toString();
 const ogImage = new URL(SITE.heroImage, Astro.site ?? 'https://tanjungarubeach.com').toString();
 const heroSrcset = webpSrcset(SITE.heroImage);
 
+// Entiti tarikan sentiasa merujuk ke halaman utama supaya semua halaman (utama & panduan)
+// mengukuhkan entiti yang sama dan bukannya bersaing.
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': ['TouristAttraction', 'Beach'],
-  '@id': `${canonical}#pantai`,
+  '@id': `${siteRoot}/#pantai`,
   name: SITE.name,
   alternateName: [SITE.nameEn, SITE.nameZh],
   description: SITE.description,
-  url: canonical,
+  url: `${siteRoot}/`,
   image: [ogImage],
   telephone: SITE.phone,
   address: {
@@ -52,7 +62,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang={SITE.lang}>
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -76,7 +86,7 @@ const jsonLd = {
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={`${SITE.name} · ${SITE.nameEn}`} />
-    <meta property="og:locale" content="ms_MY" />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -108,6 +118,9 @@ const jsonLd = {
 
     <!-- Data Berstruktur: Pantai & Tarikan Pelancongan -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {extraJsonLd.map((node) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(node)} />
+    ))}
   </head>
   <body>
     <slot />

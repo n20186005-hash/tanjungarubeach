@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+import { getTopic, TOPIC_URL, MODULE_LABELS, type Topic } from '../data/topics';
+
+interface Props {
+  topic: Topic;
+}
+const { topic } = Astro.props;
+
+const siteRoot = (Astro.site ?? 'https://tanjungarubeach.com').toString().replace(/\/+$/, '');
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://tanjungarubeach.com').toString();
+const ogImage = new URL(SITE.heroImage, Astro.site ?? 'https://tanjungarubeach.com').toString();
+
+const webPage = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: topic.title,
+  description: topic.metaDescription,
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', '@id': `${siteRoot}/#website` },
+  about: { '@type': 'TouristAttraction', '@id': `${siteRoot}/#pantai` },
+  breadcrumb: { '@id': `${canonical}#breadcrumb` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImage },
+  lastReviewed: topic.updated,
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${canonical}#breadcrumb`,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Tanjung Aru Beach', item: `${siteRoot}/` },
+    { '@type': 'ListItem', position: 2, name: topic.title, item: canonical },
+  ],
+};
+
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: topic.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const extraJsonLd = [webPage, breadcrumb, faqPage];
+
+const relatedTopics = topic.related.map((slug) => getTopic(slug)).filter(Boolean) as Topic[];
+---
+
+<BaseLayout
+  title={topic.metaTitle}
+  description={topic.metaDescription}
+  lang="en"
+  ogLocale="en_US"
+  extraJsonLd={extraJsonLd}
+>
+  <header class="border-b border-sand-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+      <a href="/" class="font-display text-lg font-extrabold text-ocean-950">{SITE.name} · {SITE.nameEn}</a>
+      <a href="/" class="text-sm font-medium text-ocean-700 underline">← Back to main guide</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-3xl px-4 py-10 sm:py-14">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-sunset-600">{MODULE_LABELS[topic.module]}</p>
+    <h1 class="mt-3 text-balance font-display text-3xl font-extrabold text-ocean-950 sm:text-4xl">{topic.title}</h1>
+    <p class="mt-2 text-xs text-ocean-900/60">Last updated: {topic.updated}</p>
+
+    <div class="mt-8 space-y-5 leading-relaxed text-ocean-900/85">
+      {topic.intro.map((p) => <p>{p}</p>)}
+    </div>
+
+    {
+      topic.sections.map((s) => (
+        <section class="mt-12">
+          <h2 class="font-display text-2xl font-bold text-ocean-950">{s.heading}</h2>
+          <div class="mt-4 space-y-4 leading-relaxed text-ocean-900/85">
+            {s.body.map((p) => <p>{p}</p>)}
+          </div>
+        </section>
+      ))
+    }
+
+    {
+      topic.faq.length > 0 && (
+        <section class="mt-14">
+          <h2 class="font-display text-2xl font-bold text-ocean-950">Frequently asked questions</h2>
+          <div class="mt-5 divide-y divide-sand-200 border-y border-sand-200">
+            {topic.faq.map((f) => (
+              <details class="group py-4">
+                <summary class="flex cursor-pointer items-center justify-between font-semibold text-ocean-950">
+                  {f.q}
+                  <span class="ml-4 text-sunset-600 transition group-open:rotate-45">+</span>
+                </summary>
+                <p class="mt-3 leading-relaxed text-ocean-900/80">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      relatedTopics.length > 0 && (
+        <section class="mt-14">
+          <h2 class="font-display text-2xl font-bold text-ocean-950">Related guides</h2>
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            {relatedTopics.map((r) => (
+              <a
+                href={TOPIC_URL(r.slug)}
+                class="block rounded-2xl border border-sand-200 bg-sand-50 p-5 transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <span class="text-sm font-semibold text-ocean-950">{r.title}</span>
+                <span class="mt-1 block text-xs text-ocean-900/60">{MODULE_LABELS[r.module]}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <div class="mt-14 rounded-2xl bg-ocean-950 p-6 text-center text-white">
+      <p class="font-display text-lg font-bold">Planning a visit to Tanjung Aru Beach?</p>
+      <p class="mt-2 text-sm text-white/80">
+        See the main guide for hours, location, transport and the sunset overview.
+      </p>
+      <a
+        href="/"
+        class="mt-4 inline-block rounded-full bg-sunset-500 px-5 py-2 text-sm font-semibold text-ocean-950 transition hover:bg-sunset-400"
+      >
+        Go to the main guide
+      </a>
+    </div>
+  </main>
+
+  <footer class="border-t border-sand-200 bg-sand-50">
+    <div class="mx-auto max-w-3xl px-4 py-8 text-center text-xs text-ocean-900/60">
+      <p>{SITE.name} · {SITE.nameEn} — independent visitor guide. Not an official site.</p>
+      <p class="mt-1">
+        Facts such as prices and opening times can change; verify with the venue or local authority
+        before you travel.
+      </p>
+    </div>
+  </footer>
+</BaseLayout>

@@ -27,7 +27,7 @@ export const SITE = {
   hours: '10:00–23:00 setiap hari (senarai Google Maps)',
   hoursNote: 'Disemak 19 Oktober 2026. Waktu ini merujuk kepada senarai tempat di Google Maps; akses kawasan pantai dan waktu gerai boleh berbeza. Ikut papan tanda setempat.',
   rating: 4.3,
-  reviewCount: 14196,
+  reviewCount: 14201,
   ratingSource: 'Google Maps',
   ratingUpdated: '19 Oktober 2026',
   entranceFee: 'Percuma (tiada tiket masuk)',

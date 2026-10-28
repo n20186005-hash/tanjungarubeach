@@ -14,9 +14,17 @@ import Practical from '../components/Practical.astro';
 import MapSection from '../components/MapSection.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
+import { TOPICS, MODULE_LABELS, TOPIC_URL, type TopicModule } from '../data/topics';
 
 const title =
   'Pantai Tanjung Aru, Kota Kinabalu | Waktu, Senja & Lokasi';
+
+const moduleOrder: TopicModule[] = ['beaches', 'practical', 'food', 'itineraries'];
+const topicsByModule = moduleOrder.map((m) => ({
+  module: m,
+  label: MODULE_LABELS[m],
+  items: TOPICS.filter((t) => t.module === m),
+}));
 ---
 
 <BaseLayout title={title}>
@@ -40,6 +48,42 @@ const title =
     <Practical />
     <MapSection />
     <FAQ />
+    <section id="panduan" class="bg-sand-100 py-20 sm:py-28">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.2em] text-sunset-600">Panduan lanjutan</p>
+          <h2 class="mt-3 font-display text-3xl font-extrabold text-ocean-950 sm:text-4xl">
+            Lebih banyak panduan (English)
+          </h2>
+          <p class="mt-4 text-base leading-relaxed text-ocean-900/75">
+            Halaman terperinci dalam bahasa Inggeris untuk niat carian tertentu — bahagian pantai,
+            pengangkutan, makanan dan itinerari. Setiap satu memaut balik ke panduan utama.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-10">
+          {
+            topicsByModule.map((group) => (
+              <div>
+                <h3 class="text-lg font-bold text-ocean-950">{group.label}</h3>
+                <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.items.map((t) => (
+                    <li>
+                      <a
+                        href={TOPIC_URL(t.slug)}
+                        class="block rounded-xl border border-sand-200 bg-white px-4 py-3 text-sm font-medium text-ocean-800 transition hover:border-sunset-400 hover:text-ocean-950"
+                      >
+                        {t.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
   </main>
   <Footer />
 </BaseLayout>
